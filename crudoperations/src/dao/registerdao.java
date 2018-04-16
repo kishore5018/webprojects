@@ -10,6 +10,7 @@ public class registerdao {
 
 	public static void register(userbean user) {
 		try {
+			System.out.println("hai");
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			Connection conn=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","vamsi","vamsi");
 			PreparedStatement pstmt=conn.prepareStatement("insert into crud(username,password,email,id) values(?,?,?,?)");

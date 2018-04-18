@@ -15,7 +15,7 @@ try
 {
 String username=request.getParameter("user");
 Class.forName("oracle.jdbc.driver.OracleDriver");
-Connection conn=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","vamsi","vamsi");
+Connection conn=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","praveen","praveen");
 PreparedStatement pstmt=conn.prepareStatement("delete from crud where username=?");
 pstmt.setString(1, username);
 int i=pstmt.executeUpdate();

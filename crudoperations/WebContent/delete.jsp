@@ -1,4 +1,3 @@
-<%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
@@ -11,40 +10,30 @@
 <title>Insert title here</title>
 </head>
 <body>
-<table border="2">
-<tr>
-<th>UserName</th>
-<th>PassWord</th>
-<th>Email</th>
-<th>Id</th>
-<th>To Do's</th>
-</tr>
-
 <%
+try
+{
+String username=request.getParameter("user");
 Class.forName("oracle.jdbc.driver.OracleDriver");
 Connection conn=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","vamsi","vamsi");
-PreparedStatement pstmt=conn.prepareStatement("select * from crud");
-ResultSet rs=pstmt.executeQuery();
-while(rs.next()){
-	%>
-	
-	<tr>
-	<td><%=rs.getString("username")%></td>
-		<td><%=rs.getString("password")%></td>
-			<td><%=rs.getString("email")%></td>
-				<td><%=rs.getInt("id")%></td>
-					<td><a href="edit.jsp?user=<%=rs.getString("username")%>">EDIT</a>  <a href="delete.jsp?user=<%=rs.getString("username")%>">DELETE</a></td>
-	</tr>
-	
-	<% 
-	
+PreparedStatement pstmt=conn.prepareStatement("delete from crud where username=?");
+pstmt.setString(1, username);
+int i=pstmt.executeUpdate();
+if(i==1){
+	response.sendRedirect("fetch.jsp");
+}else{
+	response.sendRedirect("index.jsp");
 }
+
+
+}catch(Exception e){
+System.out.println(e);
+}
+
 
 
 %>
 
-</table>
-<a href="index.jsp">HOME</a>
 
 
 

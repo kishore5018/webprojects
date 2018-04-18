@@ -11,40 +11,38 @@
 <title>Insert title here</title>
 </head>
 <body>
-<table border="2">
-<tr>
-<th>UserName</th>
-<th>PassWord</th>
-<th>Email</th>
-<th>Id</th>
-<th>To Do's</th>
-</tr>
-
 <%
+try
+{
+String username=request.getParameter("user");
 Class.forName("oracle.jdbc.driver.OracleDriver");
 Connection conn=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","vamsi","vamsi");
-PreparedStatement pstmt=conn.prepareStatement("select * from crud");
+PreparedStatement pstmt=conn.prepareStatement("select * from crud where username=?");
+pstmt.setString(1, username);
 ResultSet rs=pstmt.executeQuery();
-while(rs.next()){
-	%>
-	
-	<tr>
-	<td><%=rs.getString("username")%></td>
-		<td><%=rs.getString("password")%></td>
-			<td><%=rs.getString("email")%></td>
-				<td><%=rs.getInt("id")%></td>
-					<td><a href="edit.jsp?user=<%=rs.getString("username")%>">EDIT</a>  <a href="delete.jsp?user=<%=rs.getString("username")%>">DELETE</a></td>
-	</tr>
-	
-	<% 
-	
-}
+boolean req=rs.next();
+%>
+<form action="updateservlet" method="post">
 
+UserName:<input type="text" name="username" value=<%=rs.getString("username") %> readonly><br><br>
+PassWord:<input type="text" name="password" value=<%=rs.getString("password") %>><br><br>
+Email::::<input type="text" name="email"    value=<%=rs.getString("email") %>><br><br>
+Id:::::::<input type="text" name="id"       value=<%=rs.getInt("id") %>><br><br>
+<input type="submit" value="UPDATE">
+
+</form>
+
+
+<% 
+
+
+
+}catch(Exception e){
+System.out.println(e);
+}
 
 %>
 
-</table>
-<a href="index.jsp">HOME</a>
 
 
 

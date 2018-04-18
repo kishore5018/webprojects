@@ -24,6 +24,9 @@ public class registerdao
 			int i=pstmt.executeUpdate();
 			if(i==1)
 			{
+				
+				System.out.println("Hiiiiiiii");
+				
 				System.out.println("register success");
 			}else {
 				System.out.println("register not success");

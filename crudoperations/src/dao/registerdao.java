@@ -15,7 +15,7 @@ public class registerdao
 		try {
 			
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			Connection conn=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","praveen","praveen");
+			Connection conn=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","mounikas","mounikas");
 			PreparedStatement pstmt=conn.prepareStatement("insert into crud(username,password,email,id) values(?,?,?,?)");
 			pstmt.setString(1, user.getUsername());
 			pstmt.setString(2, user.getPassword());
@@ -25,7 +25,6 @@ public class registerdao
 			if(i==1)
 			{
 				
-				System.out.println("Hiiiiiiii");
 				
 				System.out.println("register success");
 			}else {

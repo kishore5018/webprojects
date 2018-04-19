@@ -12,7 +12,7 @@ public class updatedao {
 		try {
 			System.out.println("hai");
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			Connection conn=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","praveen","praveen");
+			Connection conn=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","mounikas","mounikas");
 			PreparedStatement pstmt=conn.prepareStatement("update crud set password=?,email=?,id=? where username=?");
 			pstmt.setString(4, user.getUsername());
 			pstmt.setString(1, user.getPassword());

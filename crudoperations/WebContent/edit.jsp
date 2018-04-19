@@ -16,7 +16,7 @@ try
 {
 String username=request.getParameter("user");
 Class.forName("oracle.jdbc.driver.OracleDriver");
-Connection conn=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","praveen","praveen");
+Connection conn=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","mounikas","mounikas");
 PreparedStatement pstmt=conn.prepareStatement("select * from crud where username=?");
 pstmt.setString(1, username);
 ResultSet rs=pstmt.executeQuery();
